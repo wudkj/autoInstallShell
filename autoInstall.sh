@@ -8,13 +8,18 @@ function createNotExist(){
 		mkdir -p "$1";
 	fi
 }
-# 显示文字
-function echoGreen(){
-	echo -e "\033[32m$1\033[0m"  
-}
 
 createSuccess= createNotExist "/data/download";
 createSuccess= createNotExist "/data/software";
+
+
+installLogPath="/data"
+# 显示文字
+function echoGreen(){
+	echo -e "\033[32m$1\033[0m"  
+	echo $1 >> ${installLogPath}/install.log
+}
+
 
 tomcatVersion="8.5.47";
 tomcatInstallPath="/data/software/apache-tomcat-${tomcatVersion}";
