@@ -91,7 +91,10 @@ function MYSQL(){
     # 配置写入
     cat >>/etc/my.cnf<<EOF
 [mysqld]
-datadir=/usr/local/mysql/data
+datadir=$mysqlInstallPath/data
+socket = /tmp/mysql.sock
+log-error = $mysqlInstallPath/data/error.log
+pid-file = $mysqlInstallPath/data/mysql.pid
 port = 3306
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 symbolic-links=0
@@ -99,6 +102,7 @@ max_connections=400
 innodb_file_per_table=1
 #表名大小写不明感，敏感为
 lower_case_table_names=1
+user = mysql
 EOF
 #启动所需文件生成
 touch "$mysqlInstallPath/3306erroe.log"
