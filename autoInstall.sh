@@ -79,6 +79,7 @@ function MYSQL(){
 
 	chown -R mysql:mysql ${mysqlInstallPath}&&\
 	chmod -R 755 ${mysqlInstallPath}&&\
+	chmod -R 755 /usr/local/mysql/data&&\
 	cd ${mysqlInstallPath}/bin&&\
 	./mysqld --initialize --user=mysql --datadir=/${mysqlInstallPath}/data --basedir=${mysqlInstallPath}  2>&1 | tee mysqlInstallInfo.txt
 	mysqlPassword=$(cat mysqlInstallInfo.txt|grep "root@localhost:")
@@ -94,7 +95,6 @@ function MYSQL(){
 datadir=$mysqlInstallPath/data
 socket = /tmp/mysql.sock
 log-error = $mysqlInstallPath/data/error.log
-pid-file = $mysqlInstallPath/data/mysql.pid
 port = 3306
 sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 symbolic-links=0
