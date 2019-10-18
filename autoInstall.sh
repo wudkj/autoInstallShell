@@ -108,16 +108,14 @@ innodb_file_per_table=1
 lower_case_table_names=1
 user = mysql
 EOF
-#启动所需文件生成
-touch "$mysqlInstallPath/3306erroe.log"
-touch "$mysqlInstallPath/3306mysql.pid"
 # 添加链接
-ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
-ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+ln -s ${mysqlInstallPath}/support-files/mysql.server /etc/init.d/mysql
+ln -s ${mysqlInstallPath}/bin/mysql /usr/bin/mysql
 # 预设置开机自启动
-cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+cp ${mysqlInstallPath}/support-files/mysql.server /etc/init.d/mysqld
 chmod +x /etc/init.d/mysqld
-chmod -R 755 /usr/local/mysql/data
+chown -R mysql:mysql ${mysqlInstallPath}
+chmod -R 755 ${mysqlInstallPath}
 }
 MYSQL;
 
@@ -125,7 +123,7 @@ echoGreen "Tomcat安装成功: ${tomcatInstallPath}"
 echoGreen "nginx启动命令:/usr/local/nginx/sbin/nginx"
 echoGreen "nginx重加载命令:/usr/local/nginx/sbin/nginx -s reload"
 echoGreen "MySQL密码为:${mysqlPassword}"
-echoGreen "MySQL启动命令: ${mysqlInstallPath}/support-files/mysql.server start"
+echoGreen "MySQL启动命令: /etc/init.d/mysqld start"
 echoGreen "MySQL登陆后修改密码: ALTER USER USER() IDENTIFIED BY 'root';"
 echoGreen "MySQL设置开机自启动: chkconfig --add mysqld"
 
