@@ -111,10 +111,11 @@ EOF
 # 添加链接
 ln -s ${mysqlInstallPath}/support-files/mysql.server /etc/init.d/mysql
 ln -s ${mysqlInstallPath}/bin/mysql /usr/bin/mysql
+
+sed '2a\chmod -R 777 /usr/local/mysql/data' ${mysqlInstallPath}/support-files/mysql.server
 # 预设置开机自启动
 cp ${mysqlInstallPath}/support-files/mysql.server /etc/init.d/mysqld
 chmod +x /etc/init.d/mysqld
-chmod -R 777 ${mysqlInstallPath}/data
 }
 MYSQL;
 
