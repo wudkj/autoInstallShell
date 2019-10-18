@@ -114,8 +114,7 @@ ln -s ${mysqlInstallPath}/bin/mysql /usr/bin/mysql
 # 预设置开机自启动
 cp ${mysqlInstallPath}/support-files/mysql.server /etc/init.d/mysqld
 chmod +x /etc/init.d/mysqld
-chown -R mysql:mysql ${mysqlInstallPath}
-chmod -R 755 ${mysqlInstallPath}
+chmod -R 777 ${mysqlInstallPath}/data
 }
 MYSQL;
 
