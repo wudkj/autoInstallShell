@@ -79,7 +79,6 @@ function MYSQL(){
 
 	chown -R mysql:mysql ${mysqlInstallPath}&&\
 	chmod -R 755 ${mysqlInstallPath}&&\
-	chmod -R 755 /usr/local/mysql/data&&\
 	cd ${mysqlInstallPath}/bin&&\
 	./mysqld --initialize --user=mysql --datadir=/${mysqlInstallPath}/data --basedir=${mysqlInstallPath}  2>&1 | tee mysqlInstallInfo.txt
 	mysqlPassword=$(cat mysqlInstallInfo.txt|grep "root@localhost:")
@@ -113,6 +112,7 @@ ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
 # 预设置开机自启动
 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
 chmod +x /etc/init.d/mysqld
+chmod -R 755 /usr/local/mysql/data
 }
 MYSQL;
 
