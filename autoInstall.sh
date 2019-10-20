@@ -74,7 +74,7 @@ function MYSQL(){
 	wget http://mirror.centos.org/centos/6/os/x86_64/Packages/libaio-0.3.107-10.el6.x86_64.rpm&&\
 	rpm -ivh libaio-0.3.107-10.el6.x86_64.rpm
 	yum install -y numactl
-	wget http://172.18.163.64:8080/${mysqlVersion}.tar.gz&&\
+	wget http://localhost:8080/${mysqlVersion}.tar.gz&&\
 	tar xzvf ${mysqlVersion}.tar.gz&&\
 
 	#mkdir -p ${mysqlInstallPath}&&\
